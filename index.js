@@ -19,10 +19,12 @@ let storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.post('/upload', upload.single('file'), async (req, res) => {
+    console.log("File recieved!")
     if(fs.existsSync("temp.mp4")) fs.unlinkSync("temp.mp4")
 
     const command = `"${ffmpegPath}" -loop 1 -i temp.png -i money.ogg -shortest -c:v libx264 -tune stillimage -c:a aac -t 16.21 -pix_fmt yuv420p -vf "scale='in_w - mod(in_w, 2):in_h - mod(in_h, 2)',fade=t=in:st=0:d=1.2861" temp.mp4`
     exec(command).on('close', () => {
+        console.log("Sending file...")
         res.sendFile("temp.mp4", {root: __dirname})
     })
 })
