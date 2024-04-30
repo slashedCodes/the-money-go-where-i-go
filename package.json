@@ -1,0 +1,14 @@
+{
+  "name": "the-money-go-where-i-go",
+  "module": "index.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}
